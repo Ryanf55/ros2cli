@@ -1,13 +1,7 @@
-cmake_minimum_required(VERSION 3.8)
-project(@(project_name))
+cmake_minimum_required(VERSION 3.14.4)
+project(@(project_name) VERSION 0.0.0)
 
-set(@(project_name)_MAJOR_VERSION 0)
-set(@(project_name)_MINOR_VERSION 0)
-set(@(project_name)_PATCH_VERSION 0)
-set(@(project_name)_VERSION
-  ${@(project_name)_MAJOR_VERSION}.${@(project_name)_MINOR_VERSION}.${@(project_name)_PATCH_VERSION})
-
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
@@ -55,9 +49,7 @@ install(
 install(
   TARGETS @(cpp_library_name)
   EXPORT export_@(project_name)
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin)
+)
 @[end if]@
 @[if cpp_node_name]@
 
